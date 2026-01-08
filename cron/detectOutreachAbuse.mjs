@@ -31,3 +31,28 @@ if (!res.ok) {
 }
 
 console.log("Abuse check OK:", body);
+// -------------------------------------------------------------------
+// Auto re-enable outreach sending for users whose cooldown has expired
+// -------------------------------------------------------------------
+
+const res2 = await fetch(
+  `${SUPABASE_URL}/rest/v1/rpc/auto_reenable_outreach_sends`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: SERVICE_ROLE_KEY,
+      Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
+    },
+    body: JSON.stringify({}),
+  }
+);
+
+const body2 = await res2.text();
+
+if (!res2.ok) {
+  console.error("Auto re-enable RPC failed:", res2.status, body2);
+  process.exit(1);
+}
+
+console.log("Auto re-enable OK:", body2);
