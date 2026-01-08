@@ -31,11 +31,6 @@ if (!res.ok) {
 }
 
 console.log("Abuse check OK:", body);
-console.log("VERSION_MARKER: auto_reenable_block_present");
-// -------------------------------------------------------------------
-// Auto re-enable outreach sending for users whose cooldown has expired
-// -------------------------------------------------------------------
-console.log("Calling auto_reenable_outreach_sends...");
 const res2 = await fetch(
   `${SUPABASE_URL}/rest/v1/rpc/auto_reenable_outreach_sends`,
   {
